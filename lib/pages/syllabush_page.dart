@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:k8/model/subject_list_dto.dart';
@@ -26,7 +27,7 @@ class _SyllabusPageState extends State<SyllabusPage> {
     Map data = {
       "authentication": {
         "hash": "sgffyiuey",
-        "userId": "1796",
+        "userId": "1229",
         "userType": "STUDENT"
       }
     };
@@ -77,23 +78,43 @@ class _SyllabusPageState extends State<SyllabusPage> {
 
     return AppScaffold(
 
-      body: ListView(
-        padding: const EdgeInsets.all(16),
-        children: [
-          PaginatedDataTable(
-            showCheckboxColumn: false,
-            header: Text('View Syllabus',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
-            rowsPerPage: 5,
-            columns: [
-              DataColumn(label: Text('S.No.')),
-              DataColumn(label: Text('Opted/Selected Courses')),
-              DataColumn(label: Text('Credits')),
-              DataColumn(label: Text('View Syllabus')),
-            ],
-            source: _DataSource(context,sub,credit),
+      body: Stack(children: [
+
+        ListView(
+          padding: const EdgeInsets.all(16),
+          children: [
+            PaginatedDataTable(
+              showCheckboxColumn: false,
+              header: Text('View Syllabus',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
+              rowsPerPage: 5,
+              columns: [
+                DataColumn(label: Text('S.No.')),
+                DataColumn(label: Text('Opted/Selected Courses')),
+                DataColumn(label: Text('Credits')),
+                DataColumn(label: Text('View Syllabus')),
+              ],
+              source: _DataSource(context,sub,credit),
+            ),
+          ],
+        ),
+        Center(
+          child: Container(
+            color: Colors.transparent,
+            height: 100.0,
+            child: visility?SpinKitWave(
+              itemBuilder: (BuildContext context, int index) {
+                return DecoratedBox(
+                  decoration: BoxDecoration(
+                    color: index.isEven
+                        ? Colors.blueAccent
+                        : Colors.purpleAccent,
+                  ),
+                );
+              },
+            ):Container(height: 0,width: 0,),
           ),
-        ],
-      ),
+        ),
+      ],),
     );
   }
 }
@@ -121,7 +142,7 @@ class _DataSource extends DataTableSource {
   _DataSource(this.context, List sub, List credit) {
     _rows=new List<_Row>();
     for(int i=0;i<sub.length;i++){
-      _rows.add(_Row(1, sub[i].toString(), credit[i].toString(), "valueD"));
+      _rows.add(_Row(i+1, sub[i].toString(), credit[i].toString(), "valueD"));
     }
 
    /* _rows = <_Row>[
@@ -143,8 +164,11 @@ class _DataSource extends DataTableSource {
         DataCell(Text(row.valueA.toString())),
         DataCell(Text(row.valueB)),
         DataCell(Text(row.valueC)),
-        DataCell(Text(row.valueD.toString())),
-
+        DataCell(Icon(
+          Icons.remove_red_eye,
+          color: Colors.blueAccent,
+          size: 16.0,
+        ),),
       ],
     );
   }

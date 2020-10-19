@@ -16,7 +16,8 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    final myEmailController = TextEditingController();
+    final myPassController = TextEditingController();
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -128,6 +129,7 @@ class LoginPage extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(5.0),
                                     ),
                                   ),
+                                  controller: myEmailController,
                                 ),
                                 Padding(
                                   padding:
@@ -141,7 +143,7 @@ class LoginPage extends StatelessWidget {
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(5.0),
                                     ),
-                                  )),
+                                  ),controller: myPassController),
                                 ),
                                 Padding(
                                   padding:
@@ -151,6 +153,8 @@ class LoginPage extends StatelessWidget {
                                     height: 50,
                                     child: RaisedButton(
                                       onPressed: () async {
+                                         var  emailval= myEmailController.text;
+                                         var  passval= myPassController.text;
                                         addStringToSF(
                                             "email", "anuj@gmail.com");
                                         var email = getStringValuesSF("email");
@@ -169,8 +173,8 @@ class LoginPage extends StatelessWidget {
                                         log("ooooooo" + intValue.toString());
                                         log("ooooooo" + intValue.toString());
                                         log("ooooooo" + intValue.toString());
-                                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                            builder: (BuildContext context) => Dashboard()));
+                                 /*       Navigator.of(context).pushReplacement(MaterialPageRoute(
+                                            builder: (BuildContext context) => Dashboard()));*/
 
                                          Future<http.Response> postRequest () async {
                                         /*   var xhr = new XMLHttpRequest();
@@ -181,7 +185,7 @@ class LoginPage extends StatelessWidget {
                                            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                                            xhr.send(params);
                                            return xhr;*/
-                                          var url ='http://164.52.198.42:8080/k8school/api/v1/common/login';
+                                          var url ='https://cors-anywhere.herokuapp.com/http://164.52.198.42:8080/k8school/api/v1/common/login';
 
                                           Map data = {
                                             "authentication": {
@@ -193,9 +197,9 @@ class LoginPage extends StatelessWidget {
                                             },
                                             "requestData": {
                                               "loginDTO": {
-                                                "email": "anujwebhost@gmail.com",
-                                                "password": "123456",
-                                                "captcha": "123456",
+                                                "email": "$emailval",
+                                                "password": "$passval",
+                                                "captcha": "$passval",
                                                 "bypass":"true"
                                               }
                                             }
@@ -204,7 +208,7 @@ class LoginPage extends StatelessWidget {
                                           var body = json.encode(data);
 
                                           var response = await http.post(url,
-                                              headers: {"Content-Type": "application/x-www-form-urlencoded"},
+                                              headers: {"Content-Type": "application/json"},
                                               body: body
                                           );
                                           print("${response.statusCode}");

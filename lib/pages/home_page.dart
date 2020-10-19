@@ -29,7 +29,7 @@ class _HomePageState extends State<HomePage> {
     Map data = {
       "authentication": {
         "hash": "sgffyiuey",
-        "userId": "1796",
+        "userId": "1229",
         "userType": "STUDENT"
       }
     };
