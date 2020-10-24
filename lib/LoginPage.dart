@@ -173,8 +173,8 @@ class LoginPage extends StatelessWidget {
                                         log("ooooooo" + intValue.toString());
                                         log("ooooooo" + intValue.toString());
                                         log("ooooooo" + intValue.toString());
-                                 /*       Navigator.of(context).pushReplacement(MaterialPageRoute(
-                                            builder: (BuildContext context) => Dashboard()));*/
+                                        Navigator.of(context).pushReplacement(MaterialPageRoute(
+                                            builder: (BuildContext context) => Dashboard()));
 
                                          Future<http.Response> postRequest () async {
                                         /*   var xhr = new XMLHttpRequest();

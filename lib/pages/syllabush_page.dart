@@ -20,6 +20,8 @@ class _SyllabusPageState extends State<SyllabusPage> {
   List imgurl=[];
   List credit=[];
   bool visility=true;
+  List listsub;
+  bool sort=true;
   Future postRequest() async {
     var courseurl='https://cors-anywhere.herokuapp.com/';
     var url =
@@ -38,40 +40,43 @@ class _SyllabusPageState extends State<SyllabusPage> {
       print("sssss${response.statusCode}");
       print("sssss${response.body}");
       var res=SyllabushList.fromJson(jsonDecode(response.body));
-      List listsub=res.dashboardStudentDTO.studentTaskDTO.subjectList;
-      for(var i in listsub){
-        sub.add(i.subjectName);
-        imgurl.add(i.subjectIcon);
-        if(i.duration ==12){
-          credit.add(1);
-        } else if(i.duration ==6){
-          credit.add(0.5);
-        }else if(i.duration ==3){
-          credit.add(0.25);
-        }
-      }
+       listsub=res.dashboardStudentDTO.studentTaskDTO.subjectList;
+
+       setsub(listsub);
+
       visility=false;
       setState(() {
         sub;
         imgurl;
         visility;
         credit;
+        listsub;
       });
 
     }else{
       print("sssss${response.statusCode}");
     }
-    setState(() {
-      sub;
-      imgurl;
-      imgurl;
-      visility;
-    });
+
   }
   @override
   void initState() {
     super.initState();
     postRequest() ;
+  }
+
+  onSortColum(int columnIndex, bool ascending) async {
+    if (columnIndex == 1) {
+      sub=[];
+      credit=[];
+      if (ascending) {
+       await listsub.sort((a, b) => a.subjectName.compareTo(b.subjectName));
+            setList(listsub);
+      } else {
+        await  listsub.sort((a, b) => b.subjectName.compareTo(a.subjectName));
+            setList(listsub);
+
+      }
+    }
   }
 
   Widget build(BuildContext context) {
@@ -85,13 +90,21 @@ class _SyllabusPageState extends State<SyllabusPage> {
           children: [
             PaginatedDataTable(
               showCheckboxColumn: false,
+              sortAscending: sort,
+              sortColumnIndex: 1,
               header: Text('View Syllabus',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
               rowsPerPage: 5,
               columns: [
                 DataColumn(label: Text('S.No.')),
-                DataColumn(label: Text('Opted/Selected Courses')),
-                DataColumn(label: Text('Credits')),
-                DataColumn(label: Text('View Syllabus')),
+                DataColumn(label: Text('Opted/Selected Courses'), numeric: false,
+                     onSort: (columnIndex, ascending) {
+                    setState(() {
+                       sort = !sort;
+                          });
+                    onSortColum(columnIndex, ascending);
+                 }),
+                DataColumn(label: Text('Credits'), numeric: false),
+                DataColumn(label: Text('View Syllabus'), numeric: false),
               ],
               source: _DataSource(context,sub,credit),
             ),
@@ -116,6 +129,35 @@ class _SyllabusPageState extends State<SyllabusPage> {
         ),
       ],),
     );
+  }
+
+  void setsub(List listsub) {
+    for(var i in listsub){
+      sub.add(i.subjectName);
+      imgurl.add(i.subjectIcon);
+      if(i.duration ==12){
+        credit.add(1);
+      } else if(i.duration ==6){
+        credit.add(0.5);
+      }else if(i.duration ==3){
+        credit.add(0.25);
+      }
+    }
+  }
+
+  void setList(List listsub) {
+    for(var i in listsub){
+      sub.add(i.subjectName);
+      imgurl.add(i.subjectIcon);
+      if(i.duration ==12){
+        credit.add(1);
+      } else if(i.duration ==6){
+        credit.add(0.5);
+      }else if(i.duration ==3){
+        credit.add(0.25);
+      }
+      print(i.subjectName+"ppppp");
+    }
   }
 }
 

@@ -147,26 +147,6 @@ class _AppDrawerState extends State<AppDrawer> with RouteAware {
                       },
                     ),
                     ListTile(
-                      title: Text('User Guide'),
-                      leading: Icon(Icons.slow_motion_video_rounded),
-                      onTap: () {
-                        // Update the state of the app
-                        // ...
-                        // Then close the drawer
-                        Navigator.pop(context);
-                      },
-                    ),
-                    ListTile(
-                      title: Text('Student Handbook'),
-                      leading: Icon(Icons.book_rounded),
-                      onTap: () {
-                        // Update the state of the app
-                        // ...
-                        // Then close the drawer
-                        Navigator.pop(context);
-                      },
-                    ),
-                    ListTile(
                       title: Text('Login History'),
                       leading: Icon(Icons.history),
                       onTap: () {
