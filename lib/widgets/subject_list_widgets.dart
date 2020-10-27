@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-/*
 class subjectList extends StatefulWidget {
   @override
   _subjectListState createState() => _subjectListState();
@@ -9,26 +8,30 @@ class subjectList extends StatefulWidget {
 class _subjectListState extends State<subjectList> {
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      leading: CircleAvatar(
-        backgroundImage: NetworkImage(_model.avatarUrl),
-      ),
-      title: Row(
-        children: <Widget>[
-          Text(_model.name),
-          SizedBox(
-            width: 16.0,
+    return Card(
+      child: Container(
+        child: ListTile(
+          leading: CircleAvatar(
+            backgroundImage: NetworkImage(""),
           ),
-          Text(
-            _model.datetime,
+          title: Row(
+            children: <Widget>[
+              Text("ehgvfgyv"),
+              SizedBox(
+                width: 16.0,
+              ),
+              Text(
+               "hjbvgvgvg",
+              ),
+            ],
           ),
-        ],
-      ),
-      subtitle: Text(_model.message),
-      trailing: Icon(
-        Icons.arrow_forward_ios,
+          subtitle: Text("hgjfytfyv"),
+
+          trailing: Icon(
+            Icons.arrow_forward_ios,
+          ),
+        ),
       ),
     );
   }
 }
-*/

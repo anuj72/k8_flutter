@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:k8/model/subject_list_dto.dart';
 import 'package:k8/model/syllabush_list.dart';
+import 'package:k8/widgets/subject_list_widgets.dart';
 import '../constants/page_titles.dart';
 import '../widgets/app_scaffold.dart';
 
@@ -108,6 +109,8 @@ class _SyllabusPageState extends State<SyllabusPage> {
               ],
               source: _DataSource(context,sub,credit),
             ),
+
+            subjectList()
           ],
         ),
         Center(
@@ -127,6 +130,9 @@ class _SyllabusPageState extends State<SyllabusPage> {
             ):Container(height: 0,width: 0,),
           ),
         ),
+
+
+
       ],),
     );
   }

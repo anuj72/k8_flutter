@@ -15,7 +15,7 @@ class Dashboard extends StatelessWidget {
       title: 'K8 School',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-          fontFamily: 'poppins',
+          fontFamily: 'OpenSansSemiBold',
         pageTransitionsTheme: PageTransitionsTheme(
           // makes all platforms that can run Flutter apps display routes without any animation
           builders: Map<TargetPlatform,
