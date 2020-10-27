@@ -25,6 +25,7 @@ class Dashboard extends StatelessWidget {
               value: (dynamic _) => const _InanimatePageTransitionsBuilder()),
         ),
       ),
+
       initialRoute: RouteNames.home,
       navigatorObservers: [AppRouteObserver()],
       routes: {

@@ -36,6 +36,14 @@ class DemoApp extends StatelessWidget {
 
 
         ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            // Add your onPressed code here!
+          },
+          child: Icon(Icons.send),
+          backgroundColor: Colors.green,
+        ),
+
       ),
 
     );
