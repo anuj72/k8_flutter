@@ -76,7 +76,7 @@ class _AppDrawerState extends State<AppDrawer> with RouteAware {
                                 child: (Image.asset('assets/images/k8.png')),
                                 padding: EdgeInsets.all(20),
                               ),
-                              radius: 45,
+                              radius: 40,
                               backgroundColor: Colors.white,
                             ),
                             Padding(
