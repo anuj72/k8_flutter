@@ -41,7 +41,7 @@ class AppScaffold extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {},
                       child: Icon(
-                        Icons.notifications_rounded,
+                        Icons.notifications,
                         size: 26.0,
                       ),
                     )
