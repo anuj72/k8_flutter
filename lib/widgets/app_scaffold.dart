@@ -63,6 +63,13 @@ class AppScaffold extends StatelessWidget {
             )
                 : null,
             body: body,
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                // Add your onPressed code here!
+              },
+              child: Icon(Icons.chat),
+              backgroundColor: Colors.green,
+            ),
           ),
         ),
       ],
