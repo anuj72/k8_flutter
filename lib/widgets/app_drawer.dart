@@ -52,7 +52,7 @@ class _AppDrawerState extends State<AppDrawer> with RouteAware {
   Widget build(BuildContext context) {
     return SizedBox(
       width:  ResponsiveLayout.isVerySmallScreen(context)
-          ? 260
+          ? 250
           : ResponsiveLayout.isSmallScreen(context)
           ? 260
           : ResponsiveLayout.isMediumScreen(context)

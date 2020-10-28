@@ -14,7 +14,7 @@ class DemoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(visualDensity: VisualDensity.comfortable,fontFamily: 'poppins'),
+      theme: ThemeData(visualDensity: VisualDensity.comfortable,fontFamily: 'OpenSansSemiBold'),
       home: Scaffold(
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(0.0), // here the desired height
@@ -36,13 +36,7 @@ class DemoApp extends StatelessWidget {
 
 
         ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // Add your onPressed code here!
-          },
-          child: Icon(Icons.send),
-          backgroundColor: Colors.green,
-        ),
+
 
       ),
 

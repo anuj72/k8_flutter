@@ -4,6 +4,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:k8/model/subject_list_dto.dart';
 import 'package:k8/model/syllabush_list.dart';
+import 'package:k8/utils/responsiveLayout.dart';
+import 'package:k8/widgets/subject_list_widgets.dart';
 import '../constants/page_titles.dart';
 import '../widgets/app_scaffold.dart';
 
@@ -70,10 +72,10 @@ class _SyllabusPageState extends State<SyllabusPage> {
       credit=[];
       if (ascending) {
        await listsub.sort((a, b) => a.subjectName.compareTo(b.subjectName));
-            setList(listsub);
+            setsub(listsub);
       } else {
         await  listsub.sort((a, b) => b.subjectName.compareTo(a.subjectName));
-            setList(listsub);
+        setsub(listsub);
 
       }
     }
@@ -85,11 +87,20 @@ class _SyllabusPageState extends State<SyllabusPage> {
 
       body: Stack(children: [
 
-        ListView(
+        ((ResponsiveLayout.isVerySmallScreen(context) || ResponsiveLayout.isSmallScreen(context)) && listsub!=null  )?Container(
+          padding: EdgeInsets.fromLTRB(15, 30, 15, 0),
+          child: ListView.builder(
+              itemCount: listsub.length,
+              itemBuilder: (BuildContext context,int index){
+                return subjectList((index+1).toString(),sub[index].toString(),credit[index].toString(),imgurl[index].toString());
+              }
+          ),
+        ):(listsub!=null)? ListView(
+
           padding: const EdgeInsets.all(16),
           children: [
             PaginatedDataTable(
-              showCheckboxColumn: false,
+                showCheckboxColumn: false,
               sortAscending: sort,
               sortColumnIndex: 1,
               header: Text('View Syllabus',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),),
@@ -108,8 +119,20 @@ class _SyllabusPageState extends State<SyllabusPage> {
               ],
               source: _DataSource(context,sub,credit),
             ),
+
+          /*  subjectList(),*/
+
           ],
-        ),
+        ):Container(),
+       /* Container(
+          padding: EdgeInsets.fromLTRB(15, 30, 15, 0),
+          child: ListView.builder(
+              itemCount: 5,
+              itemBuilder: (BuildContext context,int index){
+                return subjectList();
+              }
+          ),
+        ),*/
         Center(
           child: Container(
             color: Colors.transparent,
@@ -127,6 +150,9 @@ class _SyllabusPageState extends State<SyllabusPage> {
             ):Container(height: 0,width: 0,),
           ),
         ),
+
+
+
       ],),
     );
   }
@@ -145,20 +171,7 @@ class _SyllabusPageState extends State<SyllabusPage> {
     }
   }
 
-  void setList(List listsub) {
-    for(var i in listsub){
-      sub.add(i.subjectName);
-      imgurl.add(i.subjectIcon);
-      if(i.duration ==12){
-        credit.add(1);
-      } else if(i.duration ==6){
-        credit.add(0.5);
-      }else if(i.duration ==3){
-        credit.add(0.25);
-      }
-      print(i.subjectName+"ppppp");
-    }
-  }
+
 }
 
 class _Row {
