@@ -11,6 +11,7 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 
 import 'dashboard.dart';
+import 'network/ApiCall.dart';
 
 class LoginPage extends StatelessWidget {
 
@@ -32,7 +33,7 @@ class LoginPage extends StatelessWidget {
               height: 550,
               decoration: BoxDecoration(
                   image: DecorationImage(
-                image: AssetImage("assets/images/school2.png"),
+                image: AssetImage("assets/images/school.png"),
                 fit: BoxFit.cover,
               )),
             ),
@@ -153,6 +154,33 @@ class LoginPage extends StatelessWidget {
                                     height: 50,
                                     child: RaisedButton(
                                       onPressed: () async {
+                                              try{
+                                                final results =  await ApiCall().LoginviaEmail("email", "pass");
+                                                print("tryyyyyyyyyyy1"+results.status);
+                                              } on SocketException catch (e) {
+                                                print("tryyyyyyyyyyy2"+r"Network is unreachable");
+                                                throw "Network is unreachable";
+
+                                              } on HttpException catch (e) {
+                                                print("tryyyyyyyyyyy3"+r"Server is unreachable");
+                                                throw "Server is unreachable";
+                                              }
+                                              on Exception catch (e) {
+
+                                                print("tryyyyyyyyyyy4"+ e.toString());
+                                                throw e.toString();
+                                              }
+                                              catch (err) {
+                                                print("tryyyyyyyyyyy5"+ err.toString());
+                                                print(err);
+                                                return null;
+                                              }
+                                          final results =  await ApiCall().LoginviaEmail("email", "pass");
+                                        print("tryyyyyyyyyyy"+results.status);
+
+
+
+
                                          var  emailval= myEmailController.text;
                                          var  passval= myPassController.text;
                                         addStringToSF(
@@ -185,7 +213,7 @@ class LoginPage extends StatelessWidget {
                                            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
                                            xhr.send(params);
                                            return xhr;*/
-                                          var url ='https://cors-anywhere.herokuapp.com/http://164.52.198.42:8080/k8school/api/v1/common/login';
+                                          var url ='https://cors-anywhere.herokuapp.com/http://164.52.198.42:9090/k8school/api/v1/common/login';
 
                                           Map data = {
                                             "authentication": {

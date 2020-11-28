@@ -27,7 +27,7 @@ class _SyllabusPageState extends State<SyllabusPage> {
   Future postRequest() async {
     var courseurl='https://cors-anywhere.herokuapp.com/';
     var url =
-        'https://cors-anywhere.herokuapp.com/http://164.52.198.42:8080/k8school/api/v1/dashboard/app-student-task-content';
+        'https://cors-anywhere.herokuapp.com/http://164.52.198.42:9090/k8school/api/v1/dashboard/app-student-task-content';
     Map data = {
       "authentication": {
         "hash": "sgffyiuey",

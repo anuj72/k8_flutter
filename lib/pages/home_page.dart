@@ -25,7 +25,7 @@ class _HomePageState extends State<HomePage> {
   Future postRequest() async {
     var courseurl='https://cors-anywhere.herokuapp.com/';
     var url =
-        'https://cors-anywhere.herokuapp.com/http://164.52.198.42:8080/k8school/api/v1/dashboard/app-student-subject-list';
+        'https://cors-anywhere.herokuapp.com/http://164.52.198.42:9090/k8school/api/v1/dashboard/app-student-subject-list';
     Map data = {
       "authentication": {
         "hash": "sgffyiuey",

@@ -19,36 +19,29 @@ class _subjectListState extends State<subjectList> {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
-        child: ListTile(
-          leading: Container(
-            child: CircleAvatar(
-              radius: 50,
-              backgroundImage: NetworkImage(imgurlv),
-            ),
-            decoration: new BoxDecoration(
-              shape: BoxShape.circle,
-              border: new Border.all(
-                color: Colors.blueAccent,
-                width: 1.0,
-              ),
-            ),
-          ),
-          title: Row(
-            children: <Widget>[
-              Text(iv.toString()+". "+ subv,style: TextStyle(fontSize: 14),),
-              SizedBox(
-                width: 16.0,
-              ),
-             /* Text(
-               "Credit"+" "+creditv,
-              ),*/
-            ],
-          ),
-          subtitle: Text("Credit"+" : "+creditv,style: TextStyle(fontSize: 12)),
+        child: Row(
 
-          trailing: Icon(
-            Icons.arrow_forward_ios,
-          ),
+         children: [
+           Padding(
+             padding: const EdgeInsets.all(4.0),
+             child: CircleAvatar(
+               radius: 32,
+               backgroundColor: Colors.blueAccent,
+               child: CircleAvatar(
+                 radius: 30,
+                 backgroundImage: NetworkImage(imgurlv),
+               ),
+             ),
+           ),
+           Padding(
+             padding: const EdgeInsets.only(left: 20),
+             child: Column(children: [
+               Container(child: Text((iv+". "+subv),style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,))),
+               Container(child: Text(("Credits: "+creditv),style: TextStyle(fontSize: 12))),
+             ],),
+           )
+         ],
+
         ),
       ),
     );
