@@ -157,21 +157,8 @@ class LoginPage extends StatelessWidget {
                                               try{
                                                 final results =  await ApiCall().LoginviaEmail("email", "pass");
                                                 print("tryyyyyyyyyyy1"+results.status);
-                                              } on SocketException catch (e) {
-                                                print("tryyyyyyyyyyy2"+r"Network is unreachable");
-                                                throw "Network is unreachable";
-
-                                              } on HttpException catch (e) {
-                                                print("tryyyyyyyyyyy3"+r"Server is unreachable");
-                                                throw "Server is unreachable";
-                                              }
-                                              on Exception catch (e) {
-
-                                                print("tryyyyyyyyyyy4"+ e.toString());
-                                                throw e.toString();
-                                              }
-                                              catch (err) {
-                                                print("tryyyyyyyyyyy5"+ err.toString());
+                                              } catch (err) {
+                                                print("tryyyyyyyyyyy5"+ err);
                                                 print(err);
                                                 return null;
                                               }

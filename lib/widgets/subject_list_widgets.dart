@@ -37,7 +37,7 @@ class _subjectListState extends State<subjectList> {
              padding: const EdgeInsets.only(left: 20),
              child: Column(children: [
                Container(child: Text((iv+". "+subv),style: TextStyle(fontSize: 14,fontWeight: FontWeight.bold,))),
-               Container(child: Text(("Credits: "+creditv),style: TextStyle(fontSize: 12))),
+              /* Container(child: Text(("Credits: "+creditv),style: TextStyle(fontSize: 12))),*/
              ],),
            )
          ],

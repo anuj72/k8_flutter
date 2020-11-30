@@ -4,9 +4,11 @@ import 'package:http/http.dart' as http;
 import 'package:k8/model/login_response_dto.dart';
 
 class ApiCall{
+   String host='https://cors-anywhere.herokuapp.com/http://164.52.198.42:9090/';
+  /* String host='http://164.52.198.42:9090/';*/
   Future<LoginResponseDto> LoginviaEmail (String email,String pass) async {
     try {
-      var url ='https://cors-anywhere.herokuapp.com/http://164.52.198.42:9090/k8school/api/v1/common/login';
+      var url =host+'k8school/api/v1/common/login';
       Map data = {
         "authentication": {
           "hash": "sladfjlkasldflsaj",
